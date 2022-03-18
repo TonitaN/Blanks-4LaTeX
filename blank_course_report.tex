@@ -9,6 +9,8 @@
 \usepackage[export]{adjustbox}
 \usepackage{tocvsec2} % возможность менять учитываемую глубину разделов в оглавлении
 \usepackage[subfigure]{tocloft}
+\usepackage[newfloat]{minted}
+\captionsetup[listing]{position=top}
 
 \usepackage{fancyvrb}
 \usepackage{ulem,bm,mathrsfs,ifsym} %зачеркивания, особо жирный стиль и RSFS начертание
@@ -43,18 +45,20 @@
 %\makeatother
 
 %шрифт times
-\usepackage{tempora}
+%\usepackage{tempora}
+\usepackage{pscyr}
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}
 
    %%% Решение проблемы копирования текста в буфер кракозябрами
 %    \input glyphtounicode.tex
 %    \input glyphtounicode-cmr.tex %from pdfx package
 %    \pdfgentounicode=1
     \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
-    \usepackage[T2A]{fontenc}                       % Поддержка русских букв
+    \usepackage[T1]{fontenc}                       % Поддержка русских букв
     \usepackage[utf8]{inputenc}                     % Кодировка utf8
     \usepackage[english, main=russian]{babel}            % Языки: русский, английский
 %   \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Красивые русские шрифты
-%\renewcommand{\rmdefault}{ftm}
+\renewcommand{\rmdefault}{ftm}
 %%% Оформление абзацев %%%
 \usepackage{indentfirst}                            % Красная строка
 %\usepackage{eskdpz}
@@ -86,7 +90,9 @@
 % либо ручками \caption*{Продолжение таблицы~\ref{...}.} :)
 
 %%% Интервалы %%%
-
+\addto\captionsrussian{%
+  \renewcommand{\listingname}{Листинг}%
+}
 %%% Счётчики %%%
 \usepackage[figure,table,section]{totalcount}               % Счётчик рисунков и таблиц
 \DeclareTotalCounter{lstlisting}
@@ -303,6 +309,7 @@
 
 \let\Algorithm\algorithm
 \renewcommand\algorithm[1][]{\Algorithm[#1]\setstretch{1.5}}
+%\renewcommand{\listingscaption}{Листинг}
 
 \usepackage{pifont}
 \usepackage{calc}
@@ -444,7 +451,7 @@
 \verb*! !
 \end{lrbox}
 \newcommand{\aspace}{\usebox{\spacebox}}
-    
+\DeclareTotalCounter{listing}
     
 \begin{document}
 \sloppy
@@ -553,7 +560,7 @@
 \end{center}
 \end{titlepage}
 
-\renewcommand{\ttdefault}{pcr}
+%\renewcommand{\ttdefault}{pcr}
 
 \setlength{\tabcolsep}{3pt}
 \newpage
@@ -563,7 +570,7 @@
 %----------------------------------------------------------------------------
 \section*{АННОТАЦИЯ}
 
-Записка состоит из~\pageref{TotPages} страниц, содержит \totalsections{} разделов, \totallstlistings{} листингов, \totaltables{} таблиц и \totalfigures{} рисунков. Окончания согласованы криво, потому что подсчёт страниц, разделов, таблиц, рисунков и листингов осуществляется автоматически с помощью пакетов \LaTeX{}. Если захочется автоматически посчитать что-то ещё, нужно добавить в преамбулу документа строку \texttt{\textbackslash DeclareTotalCounter\{что-то ещё\}} и затем воспользоваться командой \texttt{\textbackslash totalчто-то ещёs\{\}} там, где потребуется.
+Записка состоит из~\pageref{TotPages} страниц, содержит \totalsections{} разделов, \totallistings{} листингов, \totaltables{} таблиц и \totalfigures{} рисунков. Окончания согласованы криво, потому что подсчёт страниц, разделов, таблиц, рисунков и листингов осуществляется автоматически с помощью пакетов \LaTeX{}. Если захочется автоматически посчитать что-то ещё, нужно добавить в преамбулу документа строку \texttt{\textbackslash DeclareTotalCounter\{что-то ещё\}} и затем воспользоваться командой \texttt{\textbackslash totalчто-то ещёs\{\}} там, где потребуется.
 
 \newpage
 \renewcommand\contentsname{\hfill{\normalfont{СОДЕРЖАНИЕ}}\hfill}  %Оглавление
@@ -597,7 +604,7 @@
 \begin{itemize}
 \item \textit{курсив} --- \texttt{\textbackslash textit\{курсив\}};
 \item \textbf{полужирный} --- \texttt{\textbackslash textbf\{полужирный\}};
-\item \texttt{моноширинный} --- \texttt{\textbackslash texttt\{моноширинный\}}. Реальная моноширинность этого начертания внутри обычного текста вызывает вопросы (но она и не требуется нормоконтролем), а вот в листингах он и вправду выглядит по ГОСТу.
+\item \texttt{моноширинный} --- \texttt{\textbackslash texttt\{моноширинный\}}. Хорошим тоном считается использовать его в листингах и при указании фрагментов кода внутри текста. Впрочем, в листингах обычно он применяется автоматически.
 \end{itemize}
 
 Есть и другие, но в этой болванке они автоматически приводятся к одному из вышеуказанных. Зачёркивания, подчёркивания и прочие украшения к начертаниям, разумеется, не относятся. Обычно начертания используются, чтобы выделить определённые фрагменты текста, и внутри окружений (см. Раздел~\ref{Sect::MathEnv}) могут сливаться с основным текстом. Директива \texttt{\textbackslash emph} включает изменение начертания в зависимости от окружения. Если окружение стандартное (основной текст), эта директива тупо включает курсив, если не подключены никакие дополнительные пакеты, и подчёркивает аргумент, если подключён пакет \texttt{ulem}.
@@ -731,20 +738,20 @@
 
 \begin{table}[htb]
 \caption{\centering Таблицы, рисунки, листинги.}
-
+\small
 \centering\begin{tabular}{|||c|c|c|c||}
 \hline\hline
 \multirow{ 2}{*}{Особенность} & \multirow{ 2}{*}{Таблицы} & \multirow{ 2}{*}{Рисунки} & \multirow{ 2}{*}{Листинги}\\
 & & & \\
 \hline
-\multirow{ 2}{*}{Окружение} & {\texttt{table}, а внутри}  & \multirow{ 2}{*}{\texttt{figure}} & \texttt{figure}, а внутри \\
-&\texttt{tabular} & & \texttt{lstlisting}\\\hline
-\multirow{ 3}{*}{Название} & \multirow{ 3}{*}{над таблицей}  & \multirow{ 3}{*}{под рисунком}  & {Аргументом \texttt{caption}}\\
-&  &  &  в квадратных скобках \\
-& & &{при вызове \texttt{\textbackslash begin\{lstlisting\}}}\\\hline
+\multirow{ 2}{*}{Окружение} & {\texttt{table}, а внутри}  & \multirow{ 2}{*}{\texttt{figure}} & \texttt{listing}, а внутри \\
+&\texttt{tabular} & & \texttt{minted} или \texttt{inputminted}\\\hline
+\multirow{ 2}{*}{Название} & \multirow{ 2}{*}{над таблицей}  & \multirow{ 2}{*}{под рисунком}  & \multirow{ 2}{*}{над листингом}\\
+&  &  &  \\
+\hline
 Центрирование &\multicolumn{2}{c|}{Да} & Нет \\\hline
-\multirow{2}{*}{Ссылка} &\multicolumn{2}{c|}{Непосредственно перед} & Аргументом \texttt{label} \\
-&\multicolumn{2}{c|}{\texttt{end}--элементом} & {при вызове \texttt{\textbackslash begin\{lstlisting\}}}\\
+\multirow{2}{*}{Ссылка} &\multicolumn{3}{c}{\multirow{2}{*}{Непосредственно перед \texttt{end}--элементом}} \\
+&\multicolumn{3}{c}{} \\
 \hline\hline
 \end{tabular}
 \label{table:table}
@@ -754,39 +761,45 @@
 
 \subsubsection{Листинги}
 
-В отличие от рисунка и таблицы, листинг является нестандартным окружением, которое введено с помощью макроса \texttt{lstlisting}. Поэтому его оформление достаточно сильно отличается от предыдущих двух элементов.
+Комментарии в коде на английском языке временно не работают на территории Российской Федерации, поэтому в рамках импортозамещения в болванке осуществлён переход с пакета \texttt{listings} на пакет \texttt{minted}. Теперь трансляция \texttt{latex}-кода надёжна, как никогда \sout{поскольку разрешает запуск сторонних скриптов}: для обеспечения её скрепности нужно при использовании команды \texttt{pdftolatex} добавить ключ исполнения \texttt{-{}-shell-escape}. 
 
-Листинг мы тоже помещаем в окружение \texttt{figure} --- не затем чтобы пользоваться ссылкой на него и не затем чтобы именовать его командой \texttt{\textbackslash caption}. Просто если листинг оформлен этим окружением, \LaTeX{} будет пытаться разместить его на странице не как попало, а как можно более аккуратно, как полноценный плавающий объект.
+Листинг мы помещаем в специальное окружение \texttt{listing} и стандартно добавляем туда \texttt{\textbackslash caption}- (до самого листинга) и \texttt{\textbackslash label}-параметры. Собственно листинг обрамляется окружением \texttt{minted}. Открывающий тег имеет вид \texttt{\textbackslash begin\{minted\}[\itshape{тут параметры оформления листинга}]\{\itshape{тут название языка}\}}.
 
-Все атрибуты листинга перечисляются в квадратных скобках после \texttt{\textbackslash begin\{lstlisting\}}. Важнейшие атрибуты:
+Некоторые параметры оформления листинга:
 \begin{itemize}
-\item \texttt{caption} --- обязательный атрибут, задающий заголовок;
-\item \texttt{label} --- обязательный атрибут, задающий ссылку на листинг;
-\item \texttt{language} --- опциональный атрибут, задающий тип разметки ключевых слов (по умолчанию --- Рефал, если разметка не нужна, пишем \texttt{language=\{\}}).
+\item \texttt{fontsize} --- определяет размер кода;
+\item \texttt{frame} --- задаёт форму рамки;
+\item \texttt{linenos} --- включает нумерацию строк;
+\item \texttt{xleftmargin} --- увеличивает отступ слева (обязательно нужен, если включена нумерация строк, иначе вас сожрёт нормоконтроль);
+\item \texttt{breaklines} --- полезный атрибут, позволяющий окружению вставлять переносы в длинные строки. Знак переноса можно подавить, добавив параметр \texttt{breaksymbol = "{}"{}}.
 \end{itemize}
 
-Внутри окружения \texttt{lstlisting} \TeX-овские спецсимволы не распознаются (в частности, все обратные слеши в листинге~\ref{lst:kitten} были записаны просто символами), разметка основного текста не применяется, а каждая новая строка начинается как во всех нормальных языках программирования --- не с пустой строки, а просто с символа перевода каретки. Кроме того, автоматически применяется моноширинное начертание и уменьшенный размер шрифта и строки кода нумеруются.
+Внутри окружения \texttt{minted} \TeX-овские спецсимволы не распознаются (в частности, все обратные слеши в листинге~\ref{lst:kitten} были записаны просто символами), разметка основного текста не применяется, а каждая новая строка начинается как во всех нормальных языках программирования --- не с пустой строки, а просто с символа перевода каретки, в точности как в теховском окружении \texttt{Verbatim} (именно так, с заглавной; собственно, это окружение и генерирует python-овский скрипт, вызываемый пакетом \texttt{minted}). Кроме того, автоматически применяется моноширинное начертание.
 
-\begin{figure}[!htb]
-\begin{lstlisting}[language={C},caption={Пример листинга.},label={lst:kitten}]
+\begin{listing}
+\caption{Пример листинга}
+\label{lst:kitten}
+\begin{minted}[frame=single,fontsize = \footnotesize, linenos, xleftmargin = 1.5em]{c}
 int main(){
 /* /\---/\ */
 /* \ O O / */
 /*  \ Y /  */
 /*   ---   */
+/* Этот комментарий разрешён на территории РФ */
 }
-\end{lstlisting}
-\end{figure}
+\end{minted}
+\end{listing}
 
-Кстати, листинг~\ref{lst:kitten} нормоконтроль на ВКР мог не пройти: комментарии в нём выделены зелёным цветом, а цвета разрешены только внутри картинок. Но для курсовой и отчёта по практике выглядит в самый раз.
+По последней инсайдерской информации, листинги считаются программой нормоконтроля картинками, поэтому цветной код в листинге~\ref{lst:kitten} --- не проблема для ВКР.
 
-А ещё листинги можно читать из файла командой \texttt{\textbackslash lstinputlisting[аргументы]\{имя файла\}}. Аргументы здесь такие же, как и у \texttt{lstlisting}. Пример --- Листинг~\ref{lst:scp}.
+А ещё листинги можно читать из файла командой \texttt{\textbackslash inputminted[аргументы]\{имя файла\}}. Аргументы здесь такие же, как и у \texttt{minted}. Пример --- Листинг~\ref{lst:scp}. Ничему не надо удивляться, здесь рефал-исходник обработан лексером пролога, потому что встроенного лексера для рефала в пакете нет. Хотя можно подключить свой лексер \sout{помним же, теперь наш код на \LaTeX{} особенно надёжен}, но это пока future work. Всё равно ВКР с рефаловскими листингами в этом году не предвидится.
 
-\begin{figure}[!htb]
-\lstinputlisting[caption={Листинг, считанный из файла SCP\_new.ref.},label={lst:scp}]{SCP_new.ref}
-\end{figure}
+\begin{listing}[!htb]
+\caption{Запрещённый на территории РФ листинг, считанный из файла SCP\_new.ref.}
+\inputminted[frame=single,fontsize = \footnotesize, linenos, breaklines, xleftmargin = 1.5em,breaksymbol = ""]{prolog}{SCP_new.ref}
+\label{lst:scp}
+\end{listing}
 
-К сожалению, пакет \texttt{listings} плохо взаимодействует с кириллицей, поэтому в тексте листинга не должно встречаться русских букв. 
 
 \subsection{Перекрёстные ссылки}
 
@@ -794,9 +807,7 @@ int main(){
 
 Имя ссылки может содержать латинские цифры и буквы и указывается в фигурных скобках: \texttt{\textbackslash{label\{имя ссылки\}}}. Принято, что имя ссылки имеет вид \texttt{тип объекта:идентификатор}, где тип объекта --- это \texttt{section}, \texttt{example}, \texttt{figure}, \texttt{table} и т.д. или их сокращения. 
 
-Ссылаемся на объект командой \texttt{\textbackslash ref\{имя ссылки\}}. Обычно требуется скомпилировать исходник дважды, прежде чем корректно расставятся все ссылки.
-
-Ссылка на листинг создаётся только внутри окружения \texttt{lstlisting}. Доказательства по умолчанию не являются объектами, на которые можно делать ссылки.
+Ссылаемся на объект командой \texttt{\textbackslash ref\{имя ссылки\}}. Обычно требуется скомпилировать исходник дважды, прежде чем корректно расставятся все ссылки. Доказательства по умолчанию не являются объектами, на которые можно делать ссылки.
 
 \section{Математика}\label{Sect::mathmode}
 
@@ -884,10 +895,12 @@ x_i^2 + y^2_i = \frac{L*\sqrt{S_{i+2}}}{2}\,;
 \begin{Example}
 Допустим, в преамбулу добавлена директива:
 
+\small
 \centering{\texttt{\textbackslash newcommand\{\textbackslash bug\}\{\textbackslash mathbf\{B\textbackslash hspace\{-.2ex\}U\textbackslash hspace\{-.2ex\}G\} \textbackslash hspace\{.1ex\}\textbackslash mathrm\{A\textbackslash hspace\{-.2ex\}G\textbackslash hspace\{-.2ex\}A\}\}}.}
 
 \vspace{-1.5ex}
 
+\normalsize
 \justify Она будет рисовать идентификатор $\mathbf{B\hspace{-0.2ex}U\hspace{-0.2ex}G}\hspace{0.1ex}\mathrm{A\hspace{-0.2ex}G\hspace{-0.2ex}A}$ везде, где встретит тег \texttt{\textbackslash bug}, правда, вне математического режима скомпилируется с ошибкой, поскольку тело макроса использует команды, специфические для него. Теперь, если мы захотим заменить этот идентификатор, например, на $\bot$, это делается простейшей заменой макроса на \texttt{\textbackslash newcommand\{\textbackslash bug\}\{\textbackslash bot\}}, и всё, дальше по тексту можно не проверять, все ли нужные идентификаторы заменились, и не заменилось ли что-то лишнее. Только помним, что если исходный идентификатор годился для математического режима, то его замена тоже должна использовать команды этого же режима.
 \end{Example}
 
@@ -899,8 +912,9 @@ x_i^2 + y^2_i = \frac{L*\sqrt{S_{i+2}}}{2}\,;
 
 На примере элемента библиографии в Листинге~\ref{lst:bib} посмотрим на структуру записи. 
 
-\begin{figure}[!htb]
-\begin{lstlisting}[language={TeX},caption={Пример элемента библиографии},label={lst:bib}]
+\begin{listing}[!htb]
+\caption{Пример элемента библиографии}
+\begin{minted}[frame=single,fontsize = \footnotesize, linenos, breaklines, xleftmargin = 1em,breaksymbol = ""]{latex}
 @article{Vybegallo,
  author = {Vybegallo, A.A. and A.A. Vybegallo},
  title = {About Reverse Analysis of Gorilla Language},
@@ -910,8 +924,9 @@ x_i^2 + y^2_i = \frac{L*\sqrt{S_{i+2}}}{2}\,;
  number = {0},
  language = {english}
 }
-\end{lstlisting}
-\end{figure}
+\end{minted}
+\label{lst:bib}
+\end{listing}
 
 На результат можно полюбоваться в списке использованных источников~\cite{Vybegallo}. Имя ссылки --- это самое первое поле, сразу после типа записи. Здесь имя \texttt{Vybegallo}. Чтобы процитировать элемент библиографии с таким именем в тексте, пишем \texttt{\textbackslash cite\{Vybegallo\}}. Цитирование указывается в конце текстового отрезка, к которому оно относится. Желательно применять неразрывный пробел для связи команды \texttt{cite} с последним словом, ему предшествующим.
 
@@ -941,7 +956,7 @@ x_i^2 + y^2_i = \frac{L*\sqrt{S_{i+2}}}{2}\,;
 \item Если в логе встретились слова \texttt{Underfull} или \texttt{Overfull}, это указывает на то, что текст не соответствует установленному формату полей. В целом, на недополнения не стоит обращать особенного внимания, за исключением случая, когда разреженность текста сильно бросается в глаза. Переполнения лучше исключить, кроме того, которое в болванке есть на титульной странице (эмблема МГТУ чуть-чуть вылазит влево за поле прозрачным фоном).
 \end{enumerate}
 
-После того, как ошибок, потерянных ссылок и критических переполнений в логе не будет, можно убедиться, что \LaTeX{} не слишком сильно изменил параметры основного шрифта в документе. Для этого открываем Word или его аналог и копируем кусок основного текста из свёрстванного pdf-документа. Имя шрифта должно быть из семейства  Tempora (это бесплатная версия times, содержащая курсивное и полужирное начертания дли кириллицы), и обязательно 14-го размера.
+После того, как ошибок, потерянных ссылок и критических переполнений в логе не будет, можно убедиться, что \LaTeX{} не слишком сильно изменил параметры основного шрифта в документе. Для этого открываем Word или его аналог и копируем кусок основного текста из свёрстанного pdf-документа. Имя шрифта должно быть из семейства  Tempora (это бесплатная версия times, содержащая курсивное и полужирное начертания дли кириллицы), и обязательно 14-го размера.
 
  \anonsection{ЗАКЛЮЧЕНИЕ} %\anonsection{Заключение}
 
