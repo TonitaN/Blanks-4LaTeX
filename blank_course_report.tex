@@ -1,7 +1,8 @@
-\documentclass[14pt,russian]{scrartcl}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[14pt, russian]{scrartcl}
 \let\counterwithout\relax
 \let\counterwithin\relax
-\usepackage{lmodern}
+%\usepackage{lmodern}
 \usepackage{float}
 \usepackage{xcolor}
 \usepackage{extsizes}
@@ -26,6 +27,7 @@
 \usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
 \usepackage{mathtools}                              % Добавляет окружение multlined
 \usepackage[perpage]{footmisc}
+%\usepackage{times}
 
 %%%% Установки для размера шрифта 14 pt %%%%
 %% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
@@ -45,8 +47,8 @@
 %\makeatother
 
 %шрифт times
-%\usepackage{tempora}
-\usepackage{pscyr}
+\usepackage{tempora}
+%\usepackage{pscyr}
 %\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}
 
    %%% Решение проблемы копирования текста в буфер кракозябрами
@@ -58,7 +60,7 @@
     \usepackage[utf8]{inputenc}                     % Кодировка utf8
     \usepackage[english, main=russian]{babel}            % Языки: русский, английский
 %   \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Красивые русские шрифты
-\renewcommand{\rmdefault}{ftm}
+%\renewcommand{\rmdefault}{ftm}
 %%% Оформление абзацев %%%
 \usepackage{indentfirst}                            % Красная строка
 %\usepackage{eskdpz}
@@ -108,7 +110,7 @@
 	%\newfontfamily\cyrillicfont{Times New Roman}
 	%\setsansfont{Times New Roman}                    %% задаёт шрифт без засечек
 %	\setmonofont{Liberation Mono}               %% задаёт моноширинный шрифт
- %   \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
+%    \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
 %%% Интервалы %%%
 %linespread-реализация ближе к реализации полуторного интервала в ворде.
 %setspace реализация заточена под шрифты 10, 11, 12pt, под остальные кегли хуже, но всё же ближе к типографской классике. 
@@ -291,6 +293,7 @@
 \usepackage[explicit]{titlesec}
 \usepackage{placeins}
 \usepackage{xparse}
+\usepackage{csquotes}
 
 \usepackage{listingsutf8}
 \usepackage{url} %пакеты расширений
@@ -299,8 +302,11 @@
 \usepackage{blkarray}
 \usepackage{chngcntr}
 \usepackage{tabularx}
+\usepackage[backend=biber, 
+    bibstyle=gost-numeric,
+    citestyle=nature]{biblatex}
 \newcommand*\template[1]{\text{<}#1\text{>}}
-
+\addbibresource{biblio.bib}
   
 \titleformat{name=\section,numberless}[block]{\normalfont\Large\centering}{}{0em}{#1}
 \titleformat{\section}[block]{\normalfont\Large\bfseries\raggedright}{}{0em}{\thesection\hspace{0.25em}#1}
@@ -906,11 +912,22 @@ x_i^2 + y^2_i = \frac{L*\sqrt{S_{i+2}}}{2}\,;
 
 \section{Подключение и сборка библиографии}
 
-Библиография готовится в отдельном файле с расширением \texttt{bib} и использует ГОСТовский стиль \texttt{ugost2008s.bst}. \texttt{bib}-файл --- это база данных, где хранятся записи об использованных источниках. Конкретное имя этого файла указывается командой \texttt{\textbackslash bibliography}. В нашем случае это \texttt{\textbackslash bibliography\{biblio\}}.
+Библиография готовится в отдельном файле с расширением \texttt{bib} и собирается утилитой \texttt{biber} со следующими параметрами (см.~Листинг~\ref{lst:parbib}). Библиографический стиль соответствует требованиям \texttt{TestVKR}, а вот стиль цитирования взят из библиографической базы журнала Nature: отечественные стили цитирования могут падать на буржуйских элементах библиографии\footnote{Кстати, \texttt{gost-numeric} тоже может заругаться, поэтому рекомендуется удалить из базы данных в \texttt{bib}-файле все вражеские атрибуты типа acmid-ов и прочего, что не поддерживается отечественными бюрократами.}. \texttt{bib}-файл --- это база данных, где хранятся записи об использованных источниках. Конкретное имя этого файла указывается командой \texttt{\textbackslash bibliography}. В нашем случае это \texttt{\textbackslash bibliography\{biblio\}}.
 
-Порядок записей в \texttt{bib}-файле может быть какой угодно, как и полей в них --- \LaTeX{} упорядочит всё как надо сам. Для сборки библиографии запустить \texttt{bibtex} и скомпилировать исходник дважды. Если ссылки всё ещё отображаются некорректно --- возможно, \LaTeX{} собрал информацию для вспомогательных файлов ещё не полностью, и рекомпиляция может решить эту проблему.
+\vspace{3pt}
+\begin{listing}[!htb]
+\caption{Параметры оформления библиографии}
+\begin{minted}[frame=single,fontsize = \footnotesize, linenos, breaklines, xleftmargin = 1em,breaksymbol = ""]{latex}
+\usepackage[backend=biber, 
+    bibstyle=gost-numeric,
+    citestyle=nature]{biblatex}
+\end{minted}
+\label{lst:parbib}
+\end{listing}
 
-На примере элемента библиографии в Листинге~\ref{lst:bib} посмотрим на структуру записи. 
+Порядок записей в \texttt{bib}-файле может быть какой угодно, как и полей в них --- \LaTeX{} упорядочит всё как надо сам. Для сборки библиографии нужно скомпилировать исходник \LaTeX{}-ом, затем запустить \texttt{biber} (в формате \texttt{biber <имя исходника без расширения>}) и скомпилировать исходник дважды. Если ссылки всё ещё отображаются некорректно --- возможно, \LaTeX{} собрал информацию для вспомогательных файлов ещё не полностью, и рекомпиляция может решить эту проблему.
+
+На примере элемента библиографии в Листинге~\ref{lst:bib} посмотрим на структуру записи. Имя ссылки --- это самое первое поле, сразу после типа записи. Здесь имя \texttt{Vybegallo}. Чтобы процитировать элемент библиографии с таким именем в тексте, пишем \texttt{\textbackslash cite\{Vybegallo\}}. Цитирование указывается в конце текстового отрезка, к которому оно относится. Желательно применять неразрывный пробел для связи команды \texttt{cite} с последним словом, ему предшествующим.
 
 \begin{listing}[!htb]
 \caption{Пример элемента библиографии}
@@ -928,8 +945,7 @@ x_i^2 + y^2_i = \frac{L*\sqrt{S_{i+2}}}{2}\,;
 \label{lst:bib}
 \end{listing}
 
-На результат можно полюбоваться в списке использованных источников~\cite{Vybegallo}. Имя ссылки --- это самое первое поле, сразу после типа записи. Здесь имя \texttt{Vybegallo}. Чтобы процитировать элемент библиографии с таким именем в тексте, пишем \texttt{\textbackslash cite\{Vybegallo\}}. Цитирование указывается в конце текстового отрезка, к которому оно относится. Желательно применять неразрывный пробел для связи команды \texttt{cite} с последним словом, ему предшествующим.
-
+На результат можно полюбоваться в списке использованных источников~\cite{Vybegallo}. 
 Отметим некоторые детали:
 \begin{itemize}
 \item не забываем экранировать служебные символы --- библиография не листинг;
@@ -960,17 +976,18 @@ x_i^2 + y^2_i = \frac{L*\sqrt{S_{i+2}}}{2}\,;
 
  \anonsection{ЗАКЛЮЧЕНИЕ} %\anonsection{Заключение}
 
-Этот исходник подготовлен с помощью системы \LaTeX{} на базе приложения к положению о нормоконтроле МГТУ им. Н.\,Э. Баумана~\cite{normcor}. Подробно про возможности языка разметки можно почитать в обстоятельном труде Львовского~\cite{LaTeX2e}, а большинство мелких вопросов решается поиском, например, в соответствующем разделе StackExchange~\cite{stackexchange}. Запросы в гугле по слову \texttt{'latex'} лучше формулировать как можно конкретнее (см.~Рисунок~\ref{fig:example1}). 
+Этот исходник подготовлен с помощью системы \LaTeX{} на базе приложения к положению о нормоконтроле МГТУ им. Н.\,Э. Баумана~\cite{Normcor}. Подробно про возможности языка разметки можно почитать в обстоятельном труде Львовского~\cite{LaTeX2e}, а большинство мелких вопросов решается поиском, например, в соответствующем разделе StackExchange~\cite{Stackexchange}. Запросы в гугле по слову \texttt{'latex'} лучше формулировать как можно конкретнее (см.~Рисунок~\ref{fig:example1}). 
 
 Установка и настройка \LaTeX{} --- не самое приятное занятие, зато реакция преподавателей на результат может быть очень приятной (см. Рисунок~\ref{fig::thesis}). Конечно, всё это имеет смысл, если в вашей работе много формул и перекрёстных ссылок. Простой текст легче набивать в WYSIWYG-редакторе.
 
 \renewcommand\refname{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
 % Список литературы
 \clearpage
-\bibliographystyle{ugost2008s}  %utf8gost71u.bst} %utf8gost705u} %gost2008s}
+%\bibliographystyle{ugost2008s}  %utf8gost71u.bst} %utf8gost705u} %gost2008s}
 {\catcode`"\active\def"{\relax}
 \addcontentsline{toc}{section}{\protect\numberline{}\refname}%
-\bibliography{biblio} %здесь ничего не меняем, кроме, возможно, имени bib-файла
+%\bibliography{biblio} %здесь ничего не меняем, кроме, возможно, имени bib-файла
+\printbibliography
 }
 \newpage
 \settocdepth{section}
