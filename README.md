@@ -49,5 +49,11 @@ https://github.com/Orianti/bmstu-latex-class
 
 Решается очень просто: находим перед `ОТСЮДА СОБСТВЕННО ТЕКСТ` команду `\setcounter{page}{2}` и заменяем `2` на тот номер страницы, который вам нужен. Постарайтесь сделать это до распечатки :(
 
-  
+- *Листинги выходят за правое поле страницы.*
 
+У вас `minted`? Нет проблем - используем модификатор `breaklines`. Например, так:
+```
+\begin{minted}
+[frame=single, fontsize = \scriptsize, linenos, breaklines, xleftmargin = 1.5em]{c++}
+```
+Кстати, размер кода тоже разумно варьировать: `\scriptsize` и `\footnotesize` оба приемлемы.
