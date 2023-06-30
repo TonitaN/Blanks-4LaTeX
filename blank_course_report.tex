@@ -13,6 +13,12 @@
 \usepackage[newfloat]{minted}
 \captionsetup[listing]{position=top}
 
+\AtBeginEnvironment{figure}{\vspace{0.5cm}}
+\AtBeginEnvironment{table}{\vspace{0.5cm}}
+\AtBeginEnvironment{listing}{\vspace{0.5cm}}
+\AtBeginEnvironment{algorithm}{\vspace{0.5cm}}
+\AtBeginEnvironment{minted}{\vspace{-0.5cm}}
+
 \usepackage{fancyvrb}
 \usepackage{ulem,bm,mathrsfs,ifsym} %зачеркивания, особо жирный стиль и RSFS начертание
 \usepackage{sectsty} % переопределение стилей подразделов
@@ -997,7 +1003,7 @@ x_i^2 + y^2_i = \frac{L*\sqrt{S_{i+2}}}{2}\,;
 \settocdepth{section}
 \anonsection{ПРИЛОЖЕНИЕ А}
 
-\vspace{-20pt}
+\vspace{-30pt}
 \begin{figure}[!htb]\centering
 \includegraphics[width=0.5\textwidth]{thesis_latex.jpg}
 \caption{Что было бы, если бы записки принимались на любом языке программирования.}
