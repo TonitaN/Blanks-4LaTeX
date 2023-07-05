@@ -1,0 +1,10 @@
+*.gz
+*.toc
+*.xml
+_minted*/*.*
+*.aux
+*.bcf
+*.log
+*.out
+*.bbl
+*.blg
