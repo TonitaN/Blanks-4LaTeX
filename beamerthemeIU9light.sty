@@ -88,7 +88,7 @@
 \ifnum\thepage>1\relax%
 		\begin{tikzpicture}
 		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-		\fill[left color=MainBlue!25!white, middle color=MainBlue, right color=MainBlue!40!white] (0,-34+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
+		\fill[left color=MainBlue!15!white, middle color=MainBlue, right color=MainBlue!30!white] (0,-34+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
 		\draw[TitleLine!90!white] ([yshift=-1.2cm]current page.north west) -- ([yshift=-1.2cm]current page.north east);
 		\end{tikzpicture}
 	\else%
@@ -105,14 +105,14 @@
 	\useasboundingbox (1,0) rectangle (\the\paperwidth,\the\paperheight);
 	\node[opacity=.3] at (12.5, 0.7) {\iunine@backgroundlogo};
 %	\draw[step=1, help lines] (0,0) grid (\the\paperwidth,\the\paperheight);
-	\fill[top color=LightBlue, middle color=LightBlue, bottom color=DarkBlue] (0, 6.75) rectangle (\the\paperwidth, 8.75);
+	\fill[top color=LightBlue, middle color=LightBlue, bottom color=DarkBlue!60!LightBlue] (0, 6.75) rectangle (\the\paperwidth, 8.75);
 	\draw[TitleLine!50] ([yshift=-0.85cm]current page.north west) -- ([yshift=-0.85cm]current page.north east);
 	\draw[TitleLine!50!black] ([yshift=-2.85cm]current page.north west) -- ([yshift=-2.85cm]current page.north east);
 	\node at (1.45, 7.75) {\iunine@titlepagelogoA};
 %	\draw[thick] (3.4, 8.25) -- (3.4, 7.25);
 	\node[right, align=left, font=\usebeamerfont{institute}] at (2.75, 7.8) {\insertinstitute};
 	\node[right] at (9.9, 7.8) {\iunine@titlepagelogoB};
-	\node[align=center, font=\usebeamerfont{title}] at (6.1, 4.5) {\inserttitle};
+	\node[align=center, font=\usebeamerfont{title}] at (6.1, 4.5) {\contour*{white}{\inserttitle}};
 	\node[align=center, font=\usebeamerfont{subtitle}] at (6.1, 3.5) {\insertsubtitle};
 	\node[align=left, font=\usebeamerfont{author}] at (10.3, 1.4) {\insertauthor};
 	\node[align=left, font=\usebeamerfont{author}, right] at (1.3, 1.4) {\iunine@supervisor};
@@ -122,6 +122,6 @@
 \setbeamertemplate{frametitle}{
 \vspace*{0.1cm}%
 \begin{beamercolorbox}{frametitle}
-	\usebeamerfont{frametitle}\contour*{TitleBlue!45!LightBlue}{\insertframetitle}
+	\usebeamerfont{frametitle}{\contour*{white}{\insertframetitle}}
 \end{beamercolorbox}
 }
