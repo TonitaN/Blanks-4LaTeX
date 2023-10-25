@@ -11,8 +11,8 @@
 \definecolor{iu9dept}{RGB}{40,40,60} %это нужно, чтобы ввести имя кафедры на нескольких строчках
 \definecolor{iu9shade}{RGB}{245,245,255} % поскольку многострочных contour-объектов не бывает
 
-\newcommand{\iutitle}[1]{\contour*{iu9shade}{\textcolor{iu9dept}{#1}}}
-\newcommand{\iutitleupd}[1]{\contour*{iu9shade!90!gray}{\textcolor{iu9dept}{#1}}}
+\newcommand{\iutitle}[1]{\contour[10]{iu9shade}{\textcolor{iu9dept}{#1}}}
+\newcommand{\iutitleupd}[1]{\contour[10]{iu9shade!90!gray}{\textcolor{iu9dept}{#1}}}
 
 \usetheme{IU9light}
 
