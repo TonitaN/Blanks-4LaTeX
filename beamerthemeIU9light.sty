@@ -88,13 +88,13 @@
 \ifnum\thepage>1\relax%
 		\begin{tikzpicture}
 		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-		\fill[left color=MainBlue!15!white, middle color=MainBlue, right color=MainBlue!30!white] (0,-34+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
-		\draw[TitleLine!90!white] ([yshift=-1.2cm]current page.north west) -- ([yshift=-1.2cm]current page.north east);
+		\fill[top color=MainBlue!5!white, middle color=MainBlue, bottom color=MainBlue!30!white] (0,-34+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
+		\draw[TitleLine!80!white] ([yshift=-1.2cm]current page.north west) -- ([yshift=-1.2cm]current page.north east);
 		\end{tikzpicture}
 	\else%
 	\begin{tikzpicture}
 		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-		\fill[top color=white, middle color=LightBlue, bottom color=LightBlue] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+		\fill[top color=LightBlue!90!TitleBlue, middle color=LightBlue, bottom color=white] (0,0) rectangle (\the\paperwidth,\the\paperheight);
 	\end{tikzpicture}%
 	\fi%
 }
@@ -105,7 +105,7 @@
 	\useasboundingbox (1,0) rectangle (\the\paperwidth,\the\paperheight);
 	\node[opacity=.3] at (12.5, 0.7) {\iunine@backgroundlogo};
 %	\draw[step=1, help lines] (0,0) grid (\the\paperwidth,\the\paperheight);
-	\fill[top color=LightBlue, middle color=LightBlue, bottom color=DarkBlue!60!LightBlue] (0, 6.75) rectangle (\the\paperwidth, 8.75);
+	\fill[top color=white, middle color=LightBlue, bottom color=DarkBlue!30!LightBlue] (0, 6.75) rectangle (\the\paperwidth, 8.75);
 	\draw[TitleLine!50] ([yshift=-0.85cm]current page.north west) -- ([yshift=-0.85cm]current page.north east);
 	\draw[TitleLine!50!black] ([yshift=-2.85cm]current page.north west) -- ([yshift=-2.85cm]current page.north east);
 	\node at (1.45, 7.75) {\iunine@titlepagelogoA};
