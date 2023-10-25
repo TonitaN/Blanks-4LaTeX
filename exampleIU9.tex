@@ -1,0 +1,56 @@
+\documentclass{beamer}
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{tempora}
+
+\usepackage[auto]{contour}
+\usepackage{color}
+
+\definecolor{iu9dept}{RGB}{40,40,60} %это нужно, чтобы ввести имя кафедры на нескольких строчках
+\definecolor{iu9shade}{RGB}{220,220,235} % поскольку многострочных contour-объектов не бывает
+
+\newcommand{\iutitle}[1]{\contour[10]{iu9shade}{\textcolor{iu9dept}{#1}}}
+\newcommand{\iutitleupd}[1]{\contour[10]{iu9shade!80!gray}{\textcolor{iu9dept}{#1}}}
+
+\usetheme{IU9}
+
+\title[Подпись в футере]{Заголовок доклада из одной строчки}
+\subtitle{и подзаголовок}
+\date[Дата в футере]{Название конференции и дата}
+\author[Сокращение, не идёт в футер]{Имя автора \\\texttt{и@почта}}
+\supervisor{Имя руководителя или автора-2\\\texttt{и@почта}}
+\institute{\contourlength{0.05em}\iutitle{МГТУ им. Н.Э. Баумана}\\\vspace*{-2ex}\\ \iutitle{Кафедра <<Теоретическая информатика}\\
+\iutitleupd{\qquad\qquad\qquad\qquad и компьютерные технологии>>}}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Заголовок слайда из одной строчки}
+\begin{itemize}
+\item Item1
+\item Item2
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Блоки}
+\begin{block}{Block}
+content
+\end{block}
+
+\begin{exampleblock}{}
+\begin{itemize}
+\item Item1
+\item Item2
+\end{itemize}
+\end{exampleblock}
+
+\end{frame}
+\end{document}

@@ -1,0 +1,127 @@
+\RequirePackage{tikz}
+\RequirePackage{inputenc}
+\RequirePackage{contour}
+\RequirePackage{babel}
+\RequirePackage{iftex}
+%\ifPDFTeX
+%	\RequirePackage{garamondx}
+%\fi
+
+\AtBeginDocument{\setbeamertemplate{logo}{}}
+
+\newcommand{\iunine@logo}{\raisebox{-3.2ex}{\includegraphics[width=0.115\textwidth]{emblem.png}}}
+\newcommand{\iunine@supervisor}{}
+\newcommand{\iunine@department}{}
+\newcommand{\iunine@titlepagelogoA}{\includegraphics[width=0.25\textwidth]{emblem.png}}
+\newcommand{\iunine@titlepagelogoB}{}
+\newcommand{\iunine@backgroundlogo}{}
+
+\renewcommand{\logo}[1]{\renewcommand{\iunine@logo}{#1}}
+\newcommand{\supervisor}[1]{\renewcommand{\iunine@supervisor}{#1}}
+\newcommand{\department}[1]{\renewcommand{\iunine@department}{#1}}
+\newcommand{\titlepagelogoA}[1]{\renewcommand{\iunine@titlepagelogoA}{#1}}
+\newcommand{\titlepagelogoB}[1]{\renewcommand{\iunine@titlepagelogoB}{#1}}
+\newcommand{\backgroundlogo}[1]{\renewcommand{\iunine@backgroundlogo}{#1}}
+
+\newcommand{\thanksframe}[1]{{
+	\setbeamertemplate{background}{
+		\begin{tikzpicture}
+			\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+			\fill[MainBlue] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+		\end{tikzpicture}
+	}
+	\begin{frame}[c]
+	\centering\Large\color{white} #1
+	\end{frame}
+}}
+
+\definecolor{MainBlue}{RGB}{70,70,150}
+\definecolor{LightBlue}{RGB}{230,230,250}
+\definecolor{DarkBlue}{RGB}{120,120,160}
+\definecolor{TitleBlue}{RGB}{150,150,180}
+\definecolor{TextGray}{RGB}{66,66,66}
+\definecolor{TitleLine}{RGB}{23,33,113}
+\definecolor{FrameBackground}{RGB}{234,234,234}
+
+\setbeamercolor{normal text}{fg=TextGray, bg=}
+\setbeamercolor{frametitle}{fg=MainBlue!65!black}
+\setbeamercolor{footline}{bg=MainBlue, fg=MainBlue}
+\setbeamercolor{logo}{parent={footline}}
+\setbeamercolor{institute in head/foot}{parent={footline}}
+\setbeamercolor{item}{parent={normal text}}
+\setbeamercolor{title page}{fg=white}
+\setbeamercolor{block title}{fg=MainBlue,bg=LightBlue!80!white}
+\setbeamercolor{block title example}{fg=MainBlue}
+\setbeamercolor{section in toc}{fg=MainBlue}
+\setbeamercolor{subsection in toc}{fg=MainBlue}
+
+\setbeamerfont{title}{size=\LARGE, series=\bfseries}
+\setbeamerfont{author}{shape=\itshape}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{institute}{family=\rmfamily, series=\bfseries, size=\small}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{background canvas}[vertical shading][bottom=FrameBackground,top=white]
+
+\setbeamertemplate{footline}{
+\leavevmode%
+\hbox{%
+  \begin{beamercolorbox}[wd=0.1\paperwidth, ht=0.7cm, dp=1ex, right, rightskip=0.5cm]{white}%
+\ifnum\thepage>1 {\begin{tikzpicture}
+% \useasboundingbox (1,0) rectangle (\the\paperwidth,\the\paperheight);
+ \fill[right color=DarkBlue, left color=LightBlue!70!DarkBlue] (0, 0.5) rectangle (\the\paperwidth, 0.55);
+ \fill[right color=DarkBlue, left color=LightBlue!70!DarkBlue] (0, 0.65) rectangle (\the\paperwidth, 0.7);
+ \fill[FrameBackground] (0, 0) rectangle (\the\paperwidth, -0.01);
+\end{tikzpicture} }\fi
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.4\paperwidth, ht=0.7cm, dp=1ex, left, leftskip=0.5cm]{white}%
+    \ifnum\thepage>1 \raisebox{2ex}{\insertshortdate{}, \insertshorttitle{}}\fi
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.5\paperwidth, ht=0.7cm, dp=1ex, right, rightskip=0.5cm]{white}%
+    \ifnum\thepage>1 \iunine@logo \fi
+  \end{beamercolorbox}%
+}%
+}
+
+\setbeamertemplate{background}{%
+\ifnum\thepage>1\relax%
+		\begin{tikzpicture}
+		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+		\fill[left color=MainBlue!30!white, middle color=MainBlue, right color=MainBlue!50!white] (0,-34+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
+		\draw[TitleLine] ([yshift=-1.2cm]current page.north west) -- ([yshift=-1.2cm]current page.north east);
+		\end{tikzpicture}
+	\else%
+	\begin{tikzpicture}
+		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+		\fill[top color=MainBlue!80!white, middle color=MainBlue, bottom color=MainBlue] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+	\end{tikzpicture}%
+	\fi%
+}
+
+\setbeamertemplate{title page}{
+\usebeamercolor{title page}
+\begin{tikzpicture}
+	\useasboundingbox (1,0) rectangle (\the\paperwidth,\the\paperheight);
+	\node[opacity=.3] at (12.5, 0.7) {\iunine@backgroundlogo};
+%	\draw[step=1, help lines] (0,0) grid (\the\paperwidth,\the\paperheight);
+	\fill[top color=LightBlue, middle color=LightBlue, bottom color=DarkBlue] (0, 6.75) rectangle (\the\paperwidth, 8.75);
+	\draw[TitleLine!50!black] ([yshift=-0.85cm]current page.north west) -- ([yshift=-0.85cm]current page.north east);
+	\draw[TitleLine!50!black] ([yshift=-2.85cm]current page.north west) -- ([yshift=-2.85cm]current page.north east);
+	\node at (1.45, 7.75) {\iunine@titlepagelogoA};
+%	\draw[thick] (3.4, 8.25) -- (3.4, 7.25);
+	\node[right, align=left, font=\usebeamerfont{institute}] at (2.75, 7.8) {\insertinstitute};
+	\node[right] at (9.9, 7.8) {\iunine@titlepagelogoB};
+	\node[align=center, font=\usebeamerfont{title}] at (6.1, 4.5) {\contour*{MainBlue!65!TitleBlue}{\inserttitle}};
+	\node[align=center, font=\usebeamerfont{subtitle}] at (6.1, 3.5) {\insertsubtitle};
+	\node[align=left, font=\usebeamerfont{author}] at (10.3, 1.4) {\insertauthor};
+	\node[align=left, font=\usebeamerfont{author}, right] at (1.3, 1.4) {\iunine@supervisor};
+\end{tikzpicture}
+}
+
+\setbeamertemplate{frametitle}{
+\vspace*{0.1cm}%
+\begin{beamercolorbox}{frametitle}
+	\usebeamerfont{frametitle}\contour*{TitleBlue!45!LightBlue}{\insertframetitle}
+\end{beamercolorbox}
+}
