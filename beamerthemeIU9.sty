@@ -3,6 +3,7 @@
 \RequirePackage{contour}
 \RequirePackage{babel}
 \RequirePackage{iftex}
+\RequirePackage{graphicx}
 %\ifPDFTeX
 %	\RequirePackage{garamondx}
 %\fi
@@ -14,7 +15,7 @@
 \newcommand{\iunine@department}{}
 \newcommand{\iunine@titlepagelogoA}{\includegraphics[width=0.25\textwidth]{emblem.png}}
 \newcommand{\iunine@titlepagelogoB}{}
-\newcommand{\iunine@backgroundlogo}{}
+\newcommand{\iunine@backgroundlogo}{\includegraphics[width=0.9\textwidth]{Back_Picture2.png}}
 
 \renewcommand{\logo}[1]{\renewcommand{\iunine@logo}{#1}}
 \newcommand{\supervisor}[1]{\renewcommand{\iunine@supervisor}{#1}}
@@ -94,7 +95,7 @@
 	\else%
 	\begin{tikzpicture}
 		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-		\fill[top color=MainBlue!80!white, middle color=MainBlue, bottom color=MainBlue] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+		\fill[top color=MainBlue!95!black, middle color=MainBlue, bottom color=MainBlue] (0,0) rectangle (\the\paperwidth,\the\paperheight);
 	\end{tikzpicture}%
 	\fi%
 }
@@ -103,9 +104,11 @@
 \usebeamercolor{title page}
 \begin{tikzpicture}
 	\useasboundingbox (1,0) rectangle (\the\paperwidth,\the\paperheight);
-	\node[opacity=.3] at (12.5, 0.7) {\iunine@backgroundlogo};
+	\node[opacity=.7] at (4.5, 8.2) {\rotatebox[origin=c]{22}{\iunine@backgroundlogo}};
+	\node[opacity=.7] at (8.5, 8.9) {\iunine@backgroundlogo};
 %	\draw[step=1, help lines] (0,0) grid (\the\paperwidth,\the\paperheight);
 	\fill[top color=LightBlue, middle color=LightBlue, bottom color=DarkBlue] (0, 6.75) rectangle (\the\paperwidth, 8.75);
+	\fill[bottom color=MainBlue!70!black, middle color=MainBlue, top color=MainBlue!80!white] (0, 6.755) rectangle (\the\paperwidth, 0);
 	\draw[TitleLine!50!black] ([yshift=-0.85cm]current page.north west) -- ([yshift=-0.85cm]current page.north east);
 	\draw[TitleLine!50!black] ([yshift=-2.85cm]current page.north west) -- ([yshift=-2.85cm]current page.north east);
 	\node at (1.45, 7.75) {\iunine@titlepagelogoA};
