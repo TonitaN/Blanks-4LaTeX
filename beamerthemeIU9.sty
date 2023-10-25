@@ -89,8 +89,12 @@
 \ifnum\thepage>1\relax%
 		\begin{tikzpicture}
 		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-		\fill[left color=MainBlue!30!white, middle color=MainBlue, right color=MainBlue!50!white] (0,-34+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
-		\draw[TitleLine] ([yshift=-1.2cm]current page.north west) -- ([yshift=-1.2cm]current page.north east);
+		\fill[left color=MainBlue!60!white, middle color=MainBlue, right color=MainBlue!90!white] (0,-34.8+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
+	\node[opacity=.5] at (4.5, 8.2) {\rotatebox[origin=c]{22}{\iunine@backgroundlogo}};
+	\node[opacity=.5] at (8.5, 8.9) {\iunine@backgroundlogo};
+		\draw[MainBlue!80!white,very thick] ([yshift=-1.2cm]current page.north west) -- ([yshift=-1.2cm]current page.north east);
+		\fill[top color=LightBlue!70!MainBlue, bottom color=LightBlue] (0,-34.8+\the\paperheight) rectangle (\the\paperwidth,-50+\the\paperheight);
+		\fill[top color=LightBlue, bottom color=FrameBackground] (0,-50+\the\paperheight) rectangle (\the\paperwidth,0);
 		\end{tikzpicture}
 	\else%
 	\begin{tikzpicture}
@@ -125,6 +129,6 @@
 \setbeamertemplate{frametitle}{
 \vspace*{0.1cm}%
 \begin{beamercolorbox}{frametitle}
-	\usebeamerfont{frametitle}\contour*{TitleBlue!45!LightBlue}{\insertframetitle}
+	\usebeamerfont{frametitle}\contourlength{0.2em}\contour[100]{TitleBlue!45!LightBlue}{\insertframetitle}
 \end{beamercolorbox}
 }
