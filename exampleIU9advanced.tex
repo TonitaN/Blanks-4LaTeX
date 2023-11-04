@@ -11,6 +11,16 @@
 \definecolor{iu9dept}{RGB}{40,40,60} %это нужно, чтобы ввести имя кафедры на нескольких строчках
 \definecolor{iu9shade}{RGB}{245,245,255} % поскольку многострочных contour-объектов не бывает
 
+%Ещё один тип блоков в другом оформлении
+\newcommand{\simpleBox}[1]{
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\node[rounded corners=1ex,draw,TitleBlue,line width=0.4ex,text width=0.7\textwidth, inner sep=1ex, align = left](MBoxForm){\textcolor{TextGray}{#1}};
+\end{tikzpicture}
+\end{figure}
+}%\minimalisticBox{title}{contents}
+
 \newcommand{\iutitle}[1]{\contour[10]{iu9shade}{\textcolor{iu9dept}{#1}}}
 \newcommand{\iutitleupd}[1]{\contour[10]{iu9shade!90!gray}{\textcolor{iu9dept}{#1}}}
 
@@ -84,7 +94,11 @@
 \end{block}%отчёркивание на конце блока
 \end{frame}
 
-\setbeamertemplate{background}[notitle] %Это фон только с футером
-\setbeamertemplate{block begin}[simple] %Начало блока без выделения
-\setbeamertemplate{block end}[simple] %Конец блока без выделения
+\begin{frame}{Альтернативные акцентные блоки}
+Для выделения очень сильных акцентов можно воспользоваться добавленными блоками в рамочке.
+
+\simpleBox{В такое окружение погружаем самое главное. На защитах лучше не злоупотреблять акцентами, на конференциях акценты необходимы.}
+
+Ширину блока можно поменять в макросе (параметр \texttt{text width = X...}). Или можно вообще отключить эту опцию, если хочется, чтобы ширина рассчитывалась автоматически. Но тогда придётся объявлять цвет шрифта заново (\texttt{\textbackslash textcolor\{TextGray\}\{...\}}) с каждой новой строчки.
+\end{frame}
 \end{document}
