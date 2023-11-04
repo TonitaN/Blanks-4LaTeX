@@ -1,0 +1,90 @@
+\documentclass{beamer}
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{tempora}
+
+\usepackage[auto]{contour}
+\usepackage{color}
+
+\definecolor{iu9dept}{RGB}{40,40,60} %это нужно, чтобы ввести имя кафедры на нескольких строчках
+\definecolor{iu9shade}{RGB}{245,245,255} % поскольку многострочных contour-объектов не бывает
+
+\newcommand{\iutitle}[1]{\contour[10]{iu9shade}{\textcolor{iu9dept}{#1}}}
+\newcommand{\iutitleupd}[1]{\contour[10]{iu9shade!90!gray}{\textcolor{iu9dept}{#1}}}
+
+\usetheme{IU9advanced}
+
+\title[Подпись в футере]{Заголовок доклада из одной строчки}%Заголовок - с контуром, из одной строчки
+\subtitle{и подзаголовок}%Подзаголовок - то же, но без контура. Если хочется сделать одного размера - используем тег \LARGE
+\date[Дата в футере]{Название конференции и дата} %Я не вывожу название конференции на слайд, потому что её логично поместить вместо названия кафедры для внешних конференций, или под чертой с эмблемой - для внутренних.
+\author[Сокращение, не идёт в футер]{Имя автора \\\texttt{и@почта}}
+\supervisor{Имя руководителя или автора-2\\\texttt{и@почта}}
+\institute{\contourlength{0.05em}\iutitle{МГТУ им. Н.Э. Баумана}\\\vspace*{-2ex}\\ \iutitle{Кафедра <<Теоретическая информатика}\\
+\iutitleupd{\qquad\qquad\qquad\qquad и компьютерные технологии>>}}%если конференция внешняя, здесь лучше поставить название конференции, а кафедру упоминать не нужно
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\setbeamertemplate{background}[iunine] %Это фон чертой под заголовком слайда
+\setbeamertemplate{block begin}[iunine] %Начало блока с двойным отчёркиванием
+\setbeamertemplate{block end}[iunine] %Конец блока с штриховым отчёркиванием
+
+\begin{frame}{Стандартный стиль}
+\begin{block}{Заголовок блока в стиле IU9}
+\begin{itemize}
+\item Item1
+\item Item2
+\end{itemize}
+\end{block}%отчёркивание на конце блока
+
+\begin{block}{}
+Блок с пустым заголовком в стиле IU9. Отчёркивание никуда не делось.
+\end{block}%отчёркивание на конце блока
+\end{frame}
+
+\setbeamertemplate{background}[notitle] %Это фон только с футером
+\setbeamertemplate{block begin}[simple] %Начало блока без выделения
+\setbeamertemplate{block end}[simple] %Конец блока без выделения
+
+\begin{frame}{}
+Стиль чистого листа. Фоновый стиль такого типа удобно использовать для слайдов без заголовка.
+\begin{block}{Заголовок блока в стиле чистого листа}
+\begin{itemize}
+\item Item1
+\item Item2
+\end{itemize}
+\end{block}%отчёркивание на конце блока
+
+\begin{block}{}
+Блок с пустым заголовком в стиле чистого листа. Не виден.
+\end{block}%отчёркивание на конце блока
+
+\end{frame}
+
+\setbeamertemplate{background}[iunine] %Это фон чертой под заголовком слайда
+\setbeamertemplate{block begin}[iunineone] %Начало блока с одинарным отчёркиванием
+\setbeamertemplate{block end}[default] %Конец блока с штриховым отчёркиванием
+
+\begin{frame}{Комбинированный стиль}
+\begin{block}{}
+Блок с пустым заголовком с одинарным отчёркиванием. Отчёркивание в конце отключено.
+\end{block}%отчёркивание на конце блока
+
+\setbeamertemplate{block end}[iunine] %Конец блока с штриховым отчёркиванием
+
+\begin{block}{}
+Блок с пустым заголовком с одинарным отчёркиванием в начале и отчёркиванием в конце.
+\end{block}%отчёркивание на конце блока
+\end{frame}
+
+\setbeamertemplate{background}[notitle] %Это фон только с футером
+\setbeamertemplate{block begin}[simple] %Начало блока без выделения
+\setbeamertemplate{block end}[simple] %Конец блока без выделения
+\end{document}

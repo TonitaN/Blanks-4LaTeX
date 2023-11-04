@@ -1,0 +1,247 @@
+\RequirePackage{tikz}
+\RequirePackage{inputenc}
+\RequirePackage{contour}
+\RequirePackage{babel}
+\RequirePackage{iftex}
+\RequirePackage{graphicx}
+%\ifPDFTeX
+%	\RequirePackage{garamondx}
+%\fi
+
+\AtBeginDocument{\setbeamertemplate{logo}{}}
+
+\newcommand{\iunine@logo}{\raisebox{-3.2ex}{\includegraphics[width=0.115\textwidth]{emblem.png}}}
+\newcommand{\iunine@supervisor}{}
+\newcommand{\iunine@department}{}
+\newcommand{\iunine@conferencename}{}
+\newcommand{\iunine@titlepagelogoA}{\includegraphics[width=0.25\textwidth]{emblem.png}}
+\newcommand{\iunine@titlepagelogoB}{}
+\newcommand{\iunine@backgroundlogo}{\includegraphics[width=0.9\textwidth]{Back_Picture2.png}}
+
+\renewcommand{\logo}[1]{\renewcommand{\iunine@logo}{#1}}
+\newcommand{\supervisor}[1]{\renewcommand{\iunine@supervisor}{#1}}
+\newcommand{\department}[1]{\renewcommand{\iunine@department}{#1}}
+\newcommand{\conferencename}[1]{\renewcommand{\iunine@conferencename}{#1}}
+\newcommand{\titlepagelogoA}[1]{\renewcommand{\iunine@titlepagelogoA}{#1}}
+\newcommand{\titlepagelogoB}[1]{\renewcommand{\iunine@titlepagelogoB}{#1}}
+\newcommand{\backgroundlogo}[1]{\renewcommand{\iunine@backgroundlogo}{#1}}
+
+\newcommand{\thanksframe}[1]{{
+	\setbeamertemplate{background}{
+		\begin{tikzpicture}
+			\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+			\fill[MainBlue] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+		\end{tikzpicture}
+	}
+	\begin{frame}[c]
+	\centering\Large\color{white} #1
+	\end{frame}
+}}
+
+\definecolor{MainBlue}{RGB}{70,70,150}
+\definecolor{LightBlue}{RGB}{230,230,250}
+\definecolor{DarkBlue}{RGB}{120,120,160}
+\definecolor{TitleBlue}{RGB}{150,150,180}
+\definecolor{TextGray}{RGB}{66,66,66}
+\definecolor{TitleLine}{RGB}{23,33,113}
+\definecolor{FrameBackground}{RGB}{234,234,234}
+
+\setbeamercolor{normal text}{fg=TextGray, bg=}
+\setbeamercolor{frametitle}{fg=MainBlue!65!black}
+\setbeamercolor{footline}{bg=MainBlue, fg=MainBlue}
+\setbeamercolor{logo}{parent={footline}}
+\setbeamercolor{institute in head/foot}{parent={footline}}
+\setbeamercolor{item}{parent={normal text}}
+\setbeamercolor{title page}{fg=MainBlue!65!black}
+\setbeamercolor{block title}{fg=MainBlue,bg=MainBlue!70!white}
+\setbeamercolor{block title example}{fg=MainBlue}
+\setbeamercolor{section in toc}{fg=MainBlue}
+\setbeamercolor{subsection in toc}{fg=MainBlue}
+
+\setbeamerfont{title}{size=\LARGE, series=\bfseries}
+\setbeamerfont{author}{shape=\itshape}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{institute}{family=\rmfamily, series=\bfseries, size=\small}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{background canvas}[vertical shading][bottom=FrameBackground,top=white]
+
+\setbeamertemplate{footline}{
+\leavevmode%
+\hbox{%
+  \begin{beamercolorbox}[wd=0.1\paperwidth, ht=0.7cm, dp=1ex, right, rightskip=0.5cm]{white}%
+\ifnum\thepage>1 {\begin{tikzpicture}
+% \useasboundingbox (1,0) rectangle (\the\paperwidth,\the\paperheight);
+ \fill[right color=DarkBlue, left color=LightBlue!70!DarkBlue] (0, 0.5) rectangle (\the\paperwidth, 0.55);
+ \fill[right color=DarkBlue, left color=LightBlue!70!DarkBlue] (0, 0.65) rectangle (\the\paperwidth, 0.7);
+ \fill[FrameBackground] (0, 0) rectangle (\the\paperwidth, -0.01);
+\end{tikzpicture} }\fi
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.4\paperwidth, ht=0.7cm, dp=1ex, left, leftskip=0.5cm]{white}%
+    \ifnum\thepage>1 \raisebox{2ex}{\insertshortdate{}, \insertshorttitle{}}\fi
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.5\paperwidth, ht=0.7cm, dp=1ex, right, rightskip=0.5cm]{white}%
+    \ifnum\thepage>1 \iunine@logo \fi
+  \end{beamercolorbox}%
+}%
+}
+
+\defbeamertemplate{background}{iunine}{%
+\ifnum\thepage>1\relax%
+		\begin{tikzpicture}
+		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+		\fill[top color=MainBlue!0!white, bottom color=MainBlue!15!white] (0,-34+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
+		\draw[MainBlue!30!white,line width = 0.45ex] ([yshift=-1.25cm]current page.north west) -- ([yshift=-1.25cm]current page.north east);
+		\draw[MainBlue!30!gray,line width = 0.3ex] ([yshift=-1.2cm]current page.north west) -- ([yshift=-1.2cm]current page.north east);
+		\end{tikzpicture}
+	\else%
+	\begin{tikzpicture}
+		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+		\fill[top color=LightBlue!90!TitleBlue, middle color=LightBlue, bottom color=white] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+	\end{tikzpicture}%
+	\fi%
+}
+
+\defbeamertemplate{background}{notitle}{%
+		\begin{tikzpicture}
+		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+	%	\fill[top color=MainBlue!0!white, bottom color=MainBlue!15!white] (0,-34+\the\paperheight) rectangle (\the\paperwidth,\the\paperheight);
+		\end{tikzpicture}
+}
+
+\setbeamertemplate{title page}{
+\usebeamercolor{title page}
+\begin{tikzpicture}
+	\useasboundingbox (1,0) rectangle (\the\paperwidth,\the\paperheight);
+	\node[opacity=.3] at (22.5, 0.2) {\iunine@backgroundlogo};
+%	\draw[step=1, help lines] (0,0) grid (\the\paperwidth,\the\paperheight);
+%	\fill[top color=white, middle color=LightBlue, bottom color=DarkBlue!30!LightBlue] (0, 8.75) rectangle (\the\paperwidth, \the\paperheight);
+%	\draw[TitleLine!50] ([yshift=-0.85cm]current page.north west) -- ([yshift=-0.85cm]current page.north east);
+	\draw[TitleLine!70!black,thick] ([yshift=-2.65cm]current page.north west) -- ([yshift=-2.65cm]current page.north east);
+	\node at (1.85, 8.18) {\iunine@titlepagelogoA};
+%	\draw[thick] (3.4, 8.25) -- (3.4, 7.25);
+	\node[right, align=left, font=\usebeamerfont{institute}] at (3.75, 8.2) {\insertinstitute};
+	\node[right] at (9.9, 7.8) {\iunine@titlepagelogoB};
+	\node[align=center, font=\usebeamerfont{title}] at (6.1, 4.5) {\contour*{white}{\inserttitle}};
+	\node[align=center, font=\usebeamerfont{subtitle}] at (6.1, 3.5) {\insertsubtitle};
+	\node[align=left, font=\usebeamerfont{author}] at (10.3, 1.4) {\insertauthor};
+	\node[align=left, font=\usebeamerfont{author}, right] at (1.3, 1.4) {\iunine@supervisor};
+\end{tikzpicture}
+}
+
+
+\setbeamertemplate{frametitle}{
+\vspace*{0.1cm}%
+\begin{beamercolorbox}{frametitle}
+	\usebeamerfont{frametitle}{\contour[50]{LightBlue}{\insertframetitle}}
+\end{beamercolorbox}
+}
+
+\defbeamertemplate{block begin}{iunine}{
+%\vskip\baselineskip
+    \vspace*{0.5ex}
+	\begin{beamercolorbox}[wd=0.98\textwidth, ht=3ex, dp=1ex, leftskip=0.2cm, rightskip=0.0cm]{}%
+            \begin{tikzpicture}
+            \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+%        \fill[top color=white,bottom color=LightBlue!10!white] (0, 0) rectangle (\textwidth, 2ex);
+        \draw[MainBlue!20!white,rounded corners=0.3ex,fill=MainBlue!20!white](0,-0.708) rectangle (0.98\textwidth, -0.805);
+  	\draw[MainBlue!30!white,rounded corners=0.3ex,fill=MainBlue!30!white](0,0) rectangle (0.98\textwidth, -0.07);
+        \draw[MainBlue!30!white,rounded corners=0.3ex,fill=MainBlue!30!gray](0,-0.7) rectangle (0.98\textwidth, -0.78);
+            %\fill[rounded, top color=FrameBackground,bottom color=MainBlue!50!FrameBackground] (0, 0) rectangle (0.98\textwidth, -3);
+  		\node at (\textwidth*0.5, -0.4) {\usebeamerfont*{block title}{\rule[-0.4ex]{0mm}{2ex}\raisebox{0ex}{\textbf{\insertblocktitle}}}};%
+            \end{tikzpicture}
+	\end{beamercolorbox}%
+	{\nointerlineskip\vskip-0.5pt}%
+        \vspace*{1ex}
+	\usebeamerfont{block body}%
+	\begin{beamercolorbox}[wd=0.98\textwidth, leftskip=0.2cm, rightskip=0.2cm, dp=0.2cm]{block body}%
+    \vskip-.75ex\vbox{}%
+}
+
+\defbeamertemplate{block begin}{simple}{
+%\vskip\baselineskip
+    \vspace*{0.5ex}
+	\begin{beamercolorbox}[wd=0.9\textwidth, ht=3ex, dp=1ex, leftskip=0.2cm, rightskip=0.0cm]{}%
+            \begin{tikzpicture}
+            \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+            %\fill[rounded, top color=FrameBackground,bottom color=MainBlue!50!FrameBackground] (0, 0) rectangle (0.98\textwidth, -3);
+  		\node at (\textwidth*0.5, -0.4) {\usebeamerfont*{block title}{\rule[-0.4ex]{0mm}{2ex}\raisebox{0ex}{\textbf{\insertblocktitle}}}};%
+            \end{tikzpicture}
+	\end{beamercolorbox}%
+	{\nointerlineskip\vskip-0.5pt}%
+        \vspace*{2ex}
+	\usebeamerfont{block body}%
+	\begin{beamercolorbox}[wd=\textwidth, leftskip=0.2cm, rightskip=0.2cm, dp=0.2cm]{block body}%
+    \vskip-.75ex\vbox{}%
+}
+
+\defbeamertemplate{block begin}{separator}{
+%\vskip\baselineskip
+    \vspace*{0.5ex}
+	\begin{beamercolorbox}[wd=0.9\textwidth, ht=3ex, dp=1ex, leftskip=0.5cm, rightskip=0.0cm]{}%
+            \begin{tikzpicture}
+            \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+        \fill[pattern={Lines[distance=0.5ex,angle=45,line width=0.7ex]},pattern color=LightBlue] (0, 0) rectangle (0.98\textwidth, -3ex);
+            %\fill[rounded, top color=FrameBackground,bottom color=MainBlue!50!FrameBackground] (0, 0) rectangle (0.98\textwidth, -3);
+  		\node at (\paperwidth*0.5, -0.5) {\usebeamerfont*{block title}{\rule[-0.4ex]{0mm}{2ex}\raisebox{0ex}{\textbf{\insertblocktitle}}}};%
+            \end{tikzpicture}
+	\end{beamercolorbox}%
+	{\nointerlineskip\vskip-0.5pt}%
+        \vspace*{2ex}
+	\usebeamerfont{block body}%
+	\begin{beamercolorbox}[wd=\textwidth, leftskip=0.2cm, rightskip=0.2cm, dp=0.2cm]{block body}%
+    \vskip-.75ex\vbox{}%
+}
+
+
+\defbeamertemplate{block begin}{notitle}
+{
+  \vspace*{1ex}
+	\usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+
+
+\defbeamertemplate{block end}{iunine}{
+            \begin{tikzpicture}
+        %    \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+            \draw[MainBlue!30!gray,line width=0.1ex,dotted,rounded corners=0.3ex](0,\textheight-0.5ex) rectangle (0.98\textwidth, \textheight-0.8ex);
+            \end{tikzpicture}
+	\end{beamercolorbox}
+	\vspace*{.5ex}
+}
+
+\defbeamertemplate{block end}{simple}{
+        %    \begin{tikzpicture}
+        %    \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+        %    \draw[MainBlue!30!gray,line width=0.1ex,dotted,rounded corners=0.3ex](0,\textheight-0.5ex) rectangle (0.98\textwidth, \textheight-0.8ex);
+        %    \end{tikzpicture}
+	\end{beamercolorbox}
+	\vspace*{.5ex}
+}
+
+\defbeamertemplate{block begin}{iunineone}{
+%\vskip\baselineskip
+    \vspace*{0.5ex}
+	\begin{beamercolorbox}[wd=0.98\textwidth, ht=3ex, dp=1ex, leftskip=0.2cm, rightskip=0.0cm]{}%
+            \begin{tikzpicture}
+            \useasboundingbox (0,0) rectangle (\the\paperwidth,\the\paperheight);
+        %\fill[top color=white,bottom color=LightBlue!10!white] (0, 0) rectangle (0.98\textwidth, -3);
+        \draw[MainBlue!20!white,rounded corners=0.5ex,fill=MainBlue!20!white](0,-0.05) rectangle (0.98\textwidth, -0.2);
+        \draw[MainBlue!30!white,rounded corners=0.5ex,fill=MainBlue!30!gray](0,0) rectangle (0.98\textwidth, -0.1);
+  	%\draw[MainBlue!30!white,rounded corners=0.5ex,fill=MainBlue!30!white](0,0) rectangle (0.98\textwidth, -0.3);
+            %\fill[rounded, top color=FrameBackground,bottom color=MainBlue!50!FrameBackground] (0, 0) rectangle (0.98\textwidth, -3);
+  	   %	\node at (5, -1.5) {\usebeamerfont*{block title}{\rule[-0.4ex]{0mm}{2ex}\raisebox{0ex}{\textbf{\insertblocktitle}}}};%
+            \end{tikzpicture}
+	\end{beamercolorbox}%
+	{\nointerlineskip\vskip-0.5pt}%
+        
+	\usebeamerfont{block body}%
+	\begin{beamercolorbox}[wd=0.98\textwidth, leftskip=0.2cm, rightskip=0.2cm, dp=0.2cm]{block body}%
+    \vskip-.75ex\vbox{}%
+}
+
+
+
