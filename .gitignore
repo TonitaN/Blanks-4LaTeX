@@ -8,3 +8,5 @@ _minted*/*.*
 *.out
 *.bbl
 *.blg
+*.nav
+*.snm
