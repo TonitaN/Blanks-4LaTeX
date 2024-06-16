@@ -446,6 +446,10 @@
 \renewcommand{\cftsecfont}{\normalfont\large} % Переключение на times в содержании
 \renewcommand{\cftsubsecfont}{\normalfont\large} % Переключение на times в содержании
 
+\setlength{\cftsecindent}{0pt}% Убираем отступы в содержании для \section
+\setlength{\cftsubsecindent}{0pt}% Убираем отступы в содержании для \subsection
+\setlength{\cftsubsubsecindent}{0pt}% Убираем отступы в содержании для \subsubsection
+
 \usepackage{caption} 
 %\captionsetup[table]{justification=raggedleft} 
 %\captionsetup[figure]{justification=centering,labelsep=endash}
