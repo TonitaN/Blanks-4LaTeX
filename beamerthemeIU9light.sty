@@ -75,10 +75,10 @@
  \fill[FrameBackground] (0, 0) rectangle (\the\paperwidth, -0.01);
 \end{tikzpicture} }\fi
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=0.4\paperwidth, ht=0.7cm, dp=1ex, left, leftskip=0.5cm]{white}%
-    \ifnum\thepage>1 \raisebox{2ex}{\insertshortdate{}, \insertshorttitle{}}\fi
+  \begin{beamercolorbox}[wd=0.55\paperwidth, ht=0.7cm, dp=1ex, left, leftskip=0cm]{white}%
+    \ifnum\thepage>1 \raisebox{2ex}{\textbf{\insertframenumber/\inserttotalframenumber},\; \insertshorttitle{},\; \insertshortdate{}}\fi
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=0.5\paperwidth, ht=0.7cm, dp=1ex, right, rightskip=0.5cm]{white}%
+  \begin{beamercolorbox}[wd=0.4\paperwidth, ht=0.7cm, dp=1ex, right, rightskip=1.15cm]{white}%
     \ifnum\thepage>1 \iunine@logo \fi
   \end{beamercolorbox}%
 }%
