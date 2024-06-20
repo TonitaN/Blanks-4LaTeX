@@ -47,6 +47,10 @@
 \def\showfontsize{\f@size{} point}
 \makeatother
 
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
 %\makeatletter
 %\show\f@size                                       % неплохо для отслеживания, но вызывает стопорение процесса, если документ компилируется без команды  -interaction=nonstopmode 
 %\setlength{\curtextsize}{\f@size pt}
@@ -835,10 +839,10 @@ int main(){
 По последней инсайдерской информации, листинги считаются программой нормоконтроля картинками, поэтому цветной код в листинге~\ref{lst:kitten} --- не проблема для ВКР.
 
 А ещё листинги можно читать из файла командой \texttt{\textbackslash inputminted[аргументы]\{имя файла\}}. Аргументы здесь такие же, как и у \texttt{minted}. Пример --- Листинг~\ref{lst:scp}. Ничему не надо удивляться, здесь рефал-исходник обработан лексером пролога, потому что встроенного лексера для рефала в пакете нет. Хотя можно подключить свой лексер \sout{помним же, теперь наш код на \LaTeX{} особенно надёжен}, но это пока future work. Всё равно ВКР с рефаловскими листингами в этом году не предвидится.
-
++
 \begin{listing}[!htb]
 \caption{Запрещённый на территории РФ листинг, считанный из файла SCP\_new.ref.}
-\inputminted[frame=single,fontsize = \footnotesize, linenos, breaklines, xleftmargin = 1.5em,breaksymbol = ""]{prolog}{SCP_new.ref}
+\inputminted[frame=single,fontsize = \footnotesize, linenos, breaklines, xleftmargin = 1.5em,breaksymbol = ""]{refal}{SCP_new.ref}
 \label{lst:scp}
 \end{listing}
 
