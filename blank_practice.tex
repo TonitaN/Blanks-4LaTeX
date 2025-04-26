@@ -14,6 +14,10 @@
 \usepackage{fancyvrb}
 \captionsetup[listing]{position=top}
 
+\makeatletter
+\AddToHook{begindocument/before}{\@ifpackageloaded{minted}{\removefromtoclist[float]{lol}}{}}
+\makeatother
+
 \AtBeginEnvironment{figure}{\vspace{0.5cm}}
 \AtBeginEnvironment{table}{\vspace{0.5cm}}
 \AtBeginEnvironment{listing}{\vspace{0.5cm}}
